@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ДигиВага — AI-придружник за дигитален баланс</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,18..144,400;0,18..144,500;0,18..144,600;1,18..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="topbar__brand">
+    <span class="topbar__mark" aria-hidden="true">⚖</span>
+    <span class="topbar__name">ДигиВага</span>
+  </div>
+  <nav class="topbar__nav" aria-label="Главна навигација">
+    <a href="#provera">Проверка</a>
+    <a href="#dnevnik">Дневник</a>
+    <a href="#hbsc">HBSC поглед</a>
+    <a href="#proekt">За проектот</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="vrh">
+    <div class="hero__text">
+      <p class="eyebrow">AI-придружник за дигитален баланс · инспирирано од HBSC</p>
+      <h1 class="hero__title">Колку е<br><span class="tilt-word">наведната</span><br>твојата вага?</h1>
+      <p class="hero__lede">
+        Меѓународната HBSC студија покажува дека сè повеќе ученици тешко
+        го контролираат своето време пред екран. <strong>ДигиВага</strong> ти
+        дава кратка анализа на твоите дигитални навики и персонализирани
+        совети — за неколку минути, без регистрација, без чување податоци.
+      </p>
+      <a href="#provera" class="btn btn--primary">Започни проверка</a>
+    </div>
+
+    <div class="hero__visual">
+      <svg id="scaleHero" class="scale-svg" viewBox="0 0 360 260" role="img"
+           aria-label="Илустрација на вага која се накосува помеѓу онлајн и офлајн страна">
+        <line x1="180" y1="40" x2="180" y2="210" class="scale-pole"/>
+        <circle cx="180" cy="38" r="6" class="scale-pivot-cap"/>
+        <g id="beamGroup" class="scale-beam-group">
+          <line x1="40" y1="40" x2="320" y2="40" class="scale-beam"/>
+          <line x1="40" y1="40" x2="40" y2="90" class="scale-string scale-string--online"/>
+          <line x1="320" y1="40" x2="320" y2="90" class="scale-string scale-string--offline"/>
+          <g class="pan pan--online" transform="translate(40,90)">
+            <path d="M-34,0 Q0,38 34,0 Z" class="pan-shape pan-shape--online"/>
+            <text x="0" y="-10" class="pan-label">📱</text>
+          </g>
+          <g class="pan pan--offline" transform="translate(320,90)">
+            <path d="M-34,0 Q0,38 34,0 Z" class="pan-shape pan-shape--offline"/>
+            <text x="0" y="-10" class="pan-label">🌳</text>
+          </g>
+        </g>
+        <path d="M150,205 L210,205 L195,225 L165,225 Z" class="scale-base"/>
+      </svg>
+      <p class="hero__caption">Илустративен приказ — реалната вага се движи според твоите одговори подолу.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="panel" id="provera">
+    <div class="panel__head">
+      <p class="eyebrow">01 · Брза проверка</p>
+      <h2>6 прашања за твоите навики</h2>
+      <p class="panel__sub">Одговори искрено — нема погрешни одговори, ова е само за тебе.</p>
+    </div>
+
+    <form id="quizForm" class="quiz">
+
+      <div class="q">
+        <label for="screenTime">Колку часа дневно си пред екран <em>за забава</em> (не училиште/домашна)?</label>
+        <div class="q__row">
+          <input type="range" id="screenTime" min="0" max="9" value="4" step="1">
+          <output id="screenTimeOut" class="q__out">4 ч</output>
+        </div>
+      </div>
+
+      <div class="q">
+        <label for="activityDays">Колку дена неделно си физички активен/активна (спорт, шетање, игра надвор)?</label>
+        <div class="q__row">
+          <input type="range" id="activityDays" min="0" max="7" value="3" step="1">
+          <output id="activityDaysOut" class="q__out">3 дена</output>
+        </div>
+      </div>
+
+      <div class="q">
+        <label for="sleepHours">Колку часа спиеш во просек навечер?</label>
+        <div class="q__row">
+          <input type="range" id="sleepHours" min="4" max="11" value="7" step="1">
+          <output id="sleepHoursOut" class="q__out">7 ч</output>
+        </div>
+      </div>
+
+      <div class="q">
+        <span class="q__legend">Користиш екран (телефон/таблет) во последниот час пред спиење?</span>
+        <div class="q__choices" role="radiogroup" aria-label="Екран пред спиење">
+          <label class="chip"><input type="radio" name="screenBeforeSleep" value="0"> Не</label>
+          <label class="chip"><input type="radio" name="screenBeforeSleep" value="1" checked> Понекогаш</label>
+          <label class="chip"><input type="radio" name="screenBeforeSleep" value="2"> Секоја вечер</label>
+        </div>
+      </div>
+
+      <div class="q">
+        <label for="fomo">Се чувствуваш напуштен/исклучен ако немаш интернет неколку часа?</label>
+        <div class="q__row">
+          <input type="range" id="fomo" min="1" max="5" value="3" step="1">
+          <output id="fomoOut" class="q__out">3 / 5</output>
+        </div>
+        <div class="q__scale-labels"><span>Воопшто не</span><span>Многу силно</span></div>
+      </div>
+
+      <div class="q">
+        <span class="q__legend">Колку често се гледаш лично (offline) со пријатели надвор од училиште?</span>
+        <div class="q__choices" role="radiogroup" aria-label="Дружење офлајн">
+          <label class="chip"><input type="radio" name="offlineSocial" value="0"> Ретко</label>
+          <label class="chip"><input type="radio" name="offlineSocial" value="1" checked> Викенди</label>
+          <label class="chip"><input type="radio" name="offlineSocial" value="2"> Скоро секој ден</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--wide">Пресметај ми ја вагата →</button>
+    </form>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="panel panel--result" id="rezultat" hidden>
+    <div class="panel__head">
+      <p class="eyebrow">02 · AI-анализа</p>
+      <h2>Твојата дигитална вага</h2>
+    </div>
+
+    <div class="result">
+      <div class="result__visual">
+        <svg id="scaleResult" class="scale-svg scale-svg--lg" viewBox="0 0 360 260" role="img" aria-label="Твоја лична вага на баланс">
+          <line x1="180" y1="40" x2="180" y2="210" class="scale-pole"/>
+          <circle cx="180" cy="38" r="6" class="scale-pivot-cap"/>
+          <g id="beamGroupResult" class="scale-beam-group">
+            <line x1="40" y1="40" x2="320" y2="40" class="scale-beam"/>
+            <line x1="40" y1="40" x2="40" y2="90" class="scale-string scale-string--online"/>
+            <line x1="320" y1="40" x2="320" y2="90" class="scale-string scale-string--offline"/>
+            <g class="pan pan--online" transform="translate(40,90)">
+              <path d="M-34,0 Q0,38 34,0 Z" class="pan-shape pan-shape--online"/>
+              <text x="0" y="-10" class="pan-label">📱</text>
+            </g>
+            <g class="pan pan--offline" transform="translate(320,90)">
+              <path d="M-34,0 Q0,38 34,0 Z" class="pan-shape pan-shape--offline"/>
+              <text x="0" y="-10" class="pan-label">🌳</text>
+            </g>
+          </g>
+          <path d="M150,205 L210,205 L195,225 L165,225 Z" class="scale-base"/>
+        </svg>
+      </div>
+
+      <div class="result__data">
+        <div class="score-block">
+          <span class="score-block__number" id="scoreNumber">—</span>
+          <span class="score-block__max">/100</span>
+        </div>
+        <p class="score-block__label" id="scoreLabel">—</p>
+        <p class="score-block__desc" id="scoreDesc"></p>
+
+        <h3 class="result__subhead">Препораки за тебе</h3>
+        <ul class="recs" id="recsList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNAL -->
+  <section class="panel panel--dark" id="dnevnik">
+    <div class="panel__head">
+      <p class="eyebrow">03 · Дневник на расположение</p>
+      <h2>Како се чувствуваш денес?</h2>
+      <p class="panel__sub">Напиши кратко како си — апликацијата препознава тон на текстот (едноставна, правило-базирана анализа на чувства, не складира податоци надвор од оваа сесија).</p>
+    </div>
+
+    <form id="journalForm" class="journal">
+      <label for="journalInput" class="visually-hidden">Внеси како се чувствуваш</label>
+      <textarea id="journalInput" rows="3" placeholder="Денес се чувствував..." maxlength="280"></textarea>
+      <button type="submit" class="btn btn--ghost">Додај запис</button>
+    </form>
+
+    <div class="journal__summary" id="journalSummary" hidden>
+      <div class="sentiment-bar" aria-hidden="true">
+        <span class="sentiment-bar__seg sentiment-bar__seg--pos" id="barPos"></span>
+        <span class="sentiment-bar__seg sentiment-bar__seg--neu" id="barNeu"></span>
+        <span class="sentiment-bar__seg sentiment-bar__seg--neg" id="barNeg"></span>
+      </div>
+      <p class="journal__legend">
+        <span><i class="dot dot--pos"></i> Позитивно</span>
+        <span><i class="dot dot--neu"></i> Неутрално</span>
+        <span><i class="dot dot--neg"></i> Негативно</span>
+      </p>
+    </div>
+
+    <ul class="journal__list" id="journalList"></ul>
+  </section>
+
+  <!-- HBSC REFERENCE -->
+  <section class="panel" id="hbsc">
+    <div class="panel__head">
+      <p class="eyebrow">04 · HBSC поглед</p>
+      <h2>Што покажуваат реалните податоци</h2>
+      <p class="panel__sub">Наоди од HBSC / WHO Europe студијата (2022), спроведена кај ~280.000 ученици на возраст 11–15 г. во 44 земји.</p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="stat-card__num">11%</span>
+        <p class="stat-card__text">од учениците покажуваат знаци на проблематично користење на социјални мрежи — пораст од 7% во 2018 г.</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__num">12%</span>
+        <p class="stat-card__text">се во ризик од проблематично играње видео игри.</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__num">&lt;2ч</span>
+        <p class="stat-card__text">е препорачана горна граница на рекреативно екранско време дневно за оваа возрасна група.</p>
+      </div>
+    </div>
+
+    <div class="compare" id="compareBlock" hidden>
+      <p class="compare__title">Твоето екранско време наспроти препораката</p>
+      <div class="compare__track">
+        <div class="compare__fill" id="compareFill"></div>
+        <div class="compare__limit" style="left:22.2%" title="Препорака: 2ч"></div>
+      </div>
+      <div class="compare__legend">
+        <span>0ч</span><span>препорака: 2ч</span><span>9ч+</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="panel panel--about" id="proekt">
+    <div class="panel__head">
+      <p class="eyebrow">За проектот</p>
+      <h2>Проблем, целна група и impact</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <h3>Проблем</h3>
+        <p>HBSC податоците покажуваат раст на проблематично користење на екрани кај адолесцентите, поврзано со послаб сон, поголем стрес и помалку лична социјализација. Повеќето ученици немаат лесен, неосудувачки начин да го забележат ова кај себе.</p>
+      </div>
+      <div>
+        <h3>Целна група</h3>
+        <p>Ученици на возраст 11–15 години, како и наставници/родители кои сакаат брз, дискретен алат за поттикнување разговор за дигитални навики.</p>
+      </div>
+      <div>
+        <h3>Како функционира</h3>
+        <p>Кратка анкета → правило-базиран „AI“ модел (тежини изведени од HBSC наодите) пресметува резултат и препораки → лесен дневник со клучен-збор анализа на тон, целосно во прелистувачот, без сервер и без чување лични податоци.</p>
+      </div>
+      <div>
+        <h3>Очекуван impact</h3>
+        <p>Подигнување на свесност кај младите за нивниот сопствен дигитален баланс и отворање разговор со врсници/наставници, без чувство на осудување или надзор.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Изработено како дополнителна задача по ПНУВ · инспирирано од HBSC (Health Behaviour in School-aged Children) · прототип, без чување податоци на сервер.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
